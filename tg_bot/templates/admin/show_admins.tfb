@@ -1,0 +1,5 @@
+Админы:
+
+{% for admin in data.admins -%}
+{{ loop.index }} --- {{ admin.tg_id }}
+{% endfor %}
