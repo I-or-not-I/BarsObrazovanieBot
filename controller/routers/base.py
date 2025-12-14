@@ -3,9 +3,9 @@ from routers.abstract import AbstractRouter
 
 
 class BaseRouter(AbstractRouter):
-    def __init__(self, register_paths: tuple) -> None:
+    def __init__(self, register_paths: tuple, prefix: str = "") -> None:
         self._register_paths: tuple = register_paths
-        self._router: APIRouter = APIRouter()
+        self._router: APIRouter = APIRouter(prefix=prefix)
         self._routs_register(register_paths)
 
     def _routs_register(self, register_paths: tuple) -> None:

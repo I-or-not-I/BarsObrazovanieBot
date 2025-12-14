@@ -6,14 +6,14 @@ from services.admin_service import AdminService
 
 
 class Router(BaseRouter):
-    def __init__(self, session_factory: async_sessionmaker) -> None:
+    def __init__(self, session_factory: async_sessionmaker, prefix: str = "/admin") -> None:
         self.__admin_service: AdminService = AdminService(session_factory)
         register_paths: tuple = (
             ("/get_admins", self.__get_admins, ["POST"]),
             ("/new_admin", self.__new_admin, ["POST"]),
             ("/del_admin", self.__del_admin, ["POST"]),
         )
-        super().__init__(register_paths)
+        super().__init__(register_paths, prefix)
 
     async def __get_admins(self) -> list[AdminData]:
         return await self.__admin_service.get_admins()

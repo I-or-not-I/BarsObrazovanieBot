@@ -12,8 +12,11 @@ from sqlalchemy.ext.asyncio import async_sessionmaker
 from routers import abstract
 from routers import ping
 from routers.admin import admin
+from routers.user import dnevnik, login
+
 from utils.logger import Logger
 from src.db import AbstractDb, Database
+from src.api import DnevnikApi, LoginApi
 
 
 from config import PARSER_IP, LOGGING_LEVEL, HOST, PORT, TIMEOUT, DB_DATA
@@ -35,9 +38,14 @@ async def main() -> None:
     await db.create_tables()
     session_factory: async_sessionmaker = await db.get_session_factory()
 
+    dnevnik_api: DnevnikApi = DnevnikApi(PARSER_IP, TIMEOUT)
+    login_api: LoginApi = LoginApi(PARSER_IP, TIMEOUT)
+
     routers: tuple[abstract.AbstractRouter, ...] = (
         ping.Router(),
         admin.Router(session_factory),
+        dnevnik.DnevnikRouter(dnevnik_api, session_factory),
+        login.LoginRouter(login_api, session_factory),
     )
     for router in routers:
         app.include_router(router.get_router())
