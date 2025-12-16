@@ -1,0 +1,5 @@
+Средний баллы по предметам:
+
+{% for discipline_marks in data.summary_marks_data[0].discipline_marks -%}
+{{ discipline_marks.discipline }} --- {{ discipline_marks.average_mark }}
+{% endfor %}

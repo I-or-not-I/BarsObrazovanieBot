@@ -1,0 +1,13 @@
+<b>{{ data.date }}</b>
+{% if not data.is_weekend %}
+{% for lesson in data.lessons -%}
+<b>{{ lesson.discipline }}</b>
+Учитель - {{ lesson.teacher }}
+Кабинет - {{ lesson.office }}
+Начало урока - {{ lesson.time_begin }}
+Конец урока - {{ lesson.time_end }}
+
+{% endfor %}
+{% else %}
+Выходной
+{% endif %}

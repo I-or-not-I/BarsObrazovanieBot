@@ -1,10 +1,10 @@
 from models.admin_data import AdminData
-from src.api import AbstractApi
+from src.api import AdminApi
 
 
 class AdminService:
-    def __init__(self, api: AbstractApi) -> None:
-        self.__api: AbstractApi = api
+    def __init__(self, api: AdminApi) -> None:
+        self.__api: AdminApi = api
 
     async def get_admins(self) -> list[AdminData]:
         return await self.__api.get_admins()

@@ -1,0 +1,8 @@
+Ваши данные:
+
+Школа - {{ data.selected_pupil_school }}
+Пол - {% if data.user_has_ava %}Мужской{% else %}Женский{% endif %}
+ФИО - {{ data.user_fullname }}
+{% if data.phone %}
+Номер телефона - {{ data.phone }}
+{% endif %}

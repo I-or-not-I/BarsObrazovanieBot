@@ -9,7 +9,7 @@ class Router(BaseRouter):
     def __init__(self, session_factory: async_sessionmaker, prefix: str = "/admin") -> None:
         self.__admin_service: AdminService = AdminService(session_factory)
         register_paths: tuple = (
-            ("/get_admins", self.__get_admins, ["POST"]),
+            ("/get_admins", self.__get_admins, ["GET"]),
             ("/new_admin", self.__new_admin, ["POST"]),
             ("/del_admin", self.__del_admin, ["POST"]),
         )

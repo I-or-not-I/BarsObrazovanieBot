@@ -8,7 +8,7 @@ from handlers.abstract_handler import AbstractHandler
 from filters.chat_type import ChatTypeFilter
 from filters.is_admin import IsAdmin
 from src.template_engine import AbstractTemplateEngine
-from states.add_admin import AddAdmin
+from states.add_admin_states import AddAdmin
 from keyboards.inline.inline_keyboard_generator import InlineKeyboardGenerator
 
 from services.admin_service import AdminService

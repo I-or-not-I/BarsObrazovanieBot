@@ -6,14 +6,14 @@ from aiogram.types.reply_keyboard_markup import ReplyKeyboardMarkup
 from handlers.abstract_handler import AbstractHandler
 from filters.chat_type import ChatTypeFilter
 from src.template_engine import AbstractTemplateEngine
-from keyboards.default.all import AllMarkupsKeyboard
+from keyboards.default.user import UserNotLoggedMarkupsKeyboard
 
 
 class BaseHandler(AbstractHandler):
     def __init__(self, template_engine: AbstractTemplateEngine) -> None:
         self.__template_engine: AbstractTemplateEngine = template_engine
 
-        self.__keyboard: ReplyKeyboardMarkup = AllMarkupsKeyboard().get_keyboard()
+        self.__not_logged_keyboard: ReplyKeyboardMarkup = UserNotLoggedMarkupsKeyboard().get_keyboard()
 
         self.__router: Router = Router()
         self.__router.message.filter(ChatTypeFilter("private"))
@@ -35,7 +35,7 @@ class BaseHandler(AbstractHandler):
 
     async def __start(self, message: Message) -> None:
         text: str = await self.__template_engine.render("start.tfb")
-        await message.answer(text, reply_markup=self.__keyboard)
+        await message.answer(text, reply_markup=self.__not_logged_keyboard)
 
     async def __help(self, message: Message) -> None:
         text: str = await self.__template_engine.render("help.tfb")

@@ -1,0 +1,7 @@
+<b>Название</b> - {{ data.name }}
+<b>Адрес</b> - {{ data.address }}
+<b>Номер телефона</b> - {{ data.phone }}
+<b>Сайт</b> - <a href="{{ data.site_url }}">{{ data.site_url }}</a>
+<b>Количество сотрудников</b> - {{ data.count_employees }}
+<b>Количество учеников</b> - {{ data.count_pupils }}
+<b>Почта</b> - <a href="mailto:{{ data.email }}">{{ data.email }}</a>
